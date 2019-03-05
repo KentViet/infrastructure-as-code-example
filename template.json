@@ -232,6 +232,7 @@
   "Conditions" : {
     "Is-EC2-VPC"     : { "Fn::Or" : [ {"Fn::Equals" : [{"Ref" : "AWS::Region"}, "eu-central-1" ]},
                                       {"Fn::Equals" : [{"Ref" : "AWS::Region"}, "cn-north-1" ]},
+                                      {"Fn::Equals" : [{"Ref" : "AWS::Region"}, "us-east-2" ]},
                                       {"Fn::Equals" : [{"Ref" : "AWS::Region"}, "ap-northeast-2" ]}]},
     "Is-EC2-Classic" : { "Fn::Not" : [{ "Condition" : "Is-EC2-VPC"}]}
   },
@@ -407,7 +408,7 @@
       }
     },
 
-    "--DBSecurityGroup": {
+    "DBSecurityGroup": {
       "Type": "AWS::RDS::DBSecurityGroup",
       "Condition" : "Is-EC2-Classic",
       "Properties": {
